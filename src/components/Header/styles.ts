@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
 
   width: 100%;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundHeader};
 `;
 
 export const Wrapper = styled.div`

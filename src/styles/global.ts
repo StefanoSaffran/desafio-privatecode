@@ -19,7 +19,7 @@ export default createGlobalStyle`
 
   body {
     background: ${({ theme }) => theme.colors.lightGrey};
-    color: ${({ theme }) => theme.colors.grey};
+    color: ${({ theme }) => theme.colors.darkGrey};
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale;
