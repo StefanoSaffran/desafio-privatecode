@@ -7,10 +7,12 @@ export default {
     greyLowerOpacity: '#abaebf',
     lightGrey: '#F5F6FA',
     darkGrey: '#6C757D',
+    darkerGrey: '#3a3a3a',
     progress: '#20C05C',
     done: '#FD4F48',
     label: '#fff',
-    background: '#fff',
+    background: '#f8f8fc',
+    backgroundHeader: '#fff',
     yellow: '#FFED00',
   },
   fontSizes: {
