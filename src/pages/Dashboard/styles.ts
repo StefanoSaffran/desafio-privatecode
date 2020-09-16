@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
-  z-index: 2;
+  z-index: 0;
   padding: 0 1.6rem;
 `;
 
@@ -15,4 +15,9 @@ export const Wrapper = styled.div`
   max-width: 113rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 750px) {
+    flex-direction: row;
+  }
 `;
