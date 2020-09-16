@@ -3,10 +3,16 @@ import styled, { css } from 'styled-components';
 import Button from '~/components/Button';
 
 export const Container = styled.div`
-  max-width: 26.2rem;
+  width: 100%;
+  height: fit-content;
   display: flex;
-  flex: 1 100%;
+
   flex-direction: column;
+
+  @media (min-width: 750px) {
+    max-width: 26.2rem;
+    flex: 1 100%;
+  }
 `;
 
 export const Wrapper = styled.div`

@@ -18,7 +18,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.lightGrey};
+    background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.darkGrey};
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;

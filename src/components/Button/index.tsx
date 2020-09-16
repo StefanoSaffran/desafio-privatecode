@@ -11,10 +11,15 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const Button = (props: PropsWithChildren<ButtonProps>) => {
-  const { children, variant, type, ...rest } = props;
+  const { children, variant, color, type, ...rest } = props;
 
   return (
-    <Container type={type || 'button'} variant={variant} {...rest}>
+    <Container
+      color={color}
+      type={type || 'button'}
+      variant={variant}
+      {...rest}
+    >
       {children}
     </Container>
   );

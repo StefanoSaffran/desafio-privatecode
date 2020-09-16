@@ -74,7 +74,8 @@
             "/^react$/",
             "module",
             ["parent", "sibling", "index", "/@shared/"],
-            ["/^~/"]
+            ["/^~/"],
+            ["/styles$/"]
           ],
           "alphabetize": { "order": "ignore", "ignoreCase": true }
         }
