@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import Button from '~/components/Button';
+
 export const Container = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.background};
@@ -16,6 +18,17 @@ export const Container = styled.div`
       display: none;
     }
 
+    > div:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      > h1 {
+        margin-bottom: 1.6rem;
+      }
+    }
+
     @media (min-width: 750px) {
       margin-top: 0;
       margin-left: 2.4rem;
@@ -28,4 +41,16 @@ export const Wrapper = styled.div`
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
   grid-gap: 1.2rem;
+`;
+
+export const SwitchButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: fit-content;
+  padding: 0;
+  padding-bottom: 0.6rem;
+  position: absolute;
+  right: 0;
 `;
