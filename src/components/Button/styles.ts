@@ -18,11 +18,10 @@ const variants = {
 };
 
 export const Container = styled.button<ButtonProps>`
-  ${({ theme, variant, color, background }) => css`
+  ${({ theme, variant, color }) => css`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${background || theme.colors.background};
     border: 0;
     width: 100%;
     padding: 0.8rem 2.4rem;
