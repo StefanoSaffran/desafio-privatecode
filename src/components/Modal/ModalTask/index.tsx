@@ -32,6 +32,7 @@ const ModalTask = ({ isOpen, setIsOpen }: IModalProps) => {
         isRunning: false,
         time: 0,
       });
+      setTitle('');
       setIsOpen();
     },
     [setIsOpen, addTask, title],
