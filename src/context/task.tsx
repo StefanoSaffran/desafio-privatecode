@@ -19,6 +19,7 @@ export interface ITask {
 interface ITaskContext {
   tasks: ITask[];
   addTask(task: ITask): void;
+  editTask(task: ITask): void;
   getTotal(): number;
   getDone(): number;
   getInProgress(): number;
@@ -46,9 +47,15 @@ const TaskProvider: React.FC = ({ children }) => {
     setTasks(state => [...state, task]);
   }, []);
 
-  /*  const editTask = useCallback((task: ITask) => {
+  const editTask = useCallback((task: ITask) => {
+    setTasks(state =>
+      state.map(storagedTask => {
+        if (storagedTask.id === task.id) return task;
 
-  }) */
+        return storagedTask;
+      }),
+    );
+  }, []);
 
   const getTotal = useCallback(() => {
     const total = tasks.length;
@@ -66,8 +73,8 @@ const TaskProvider: React.FC = ({ children }) => {
   }, [tasks]);
 
   const value = useMemo(
-    () => ({ tasks, addTask, getTotal, getDone, getInProgress }),
-    [tasks, addTask, getTotal, getDone, getInProgress],
+    () => ({ tasks, addTask, editTask, getTotal, getDone, getInProgress }),
+    [tasks, addTask, editTask, getTotal, getDone, getInProgress],
   );
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };
