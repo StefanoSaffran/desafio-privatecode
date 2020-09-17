@@ -4,6 +4,7 @@ import React, {
   useState,
   useMemo,
   PropsWithChildren,
+  useCallback,
 } from 'react';
 
 import {
@@ -21,9 +22,10 @@ import { Container, StartStopButton } from './styles';
 
 interface IProps {
   task: ITask;
+  handleEditTask: (task: ITask) => void;
 }
 
-const Task = ({ task }: PropsWithChildren<IProps>) => {
+const Task = ({ task, handleEditTask }: PropsWithChildren<IProps>) => {
   const { colors } = useTheme();
   const [isRunning, setIsRunning] = useState(false);
   const [lapse, setLapse] = useState(task.time);
@@ -45,6 +47,10 @@ const Task = ({ task }: PropsWithChildren<IProps>) => {
     setIsRunning(!isRunning);
   }
 
+  const setEditingTask = useCallback(() => {
+    handleEditTask(task);
+  }, [handleEditTask, task]);
+
   const time = useMemo(() => {
     const seconds = lapse / 1000;
     const min = Math.floor(seconds / 60).toString();
@@ -54,25 +60,35 @@ const Task = ({ task }: PropsWithChildren<IProps>) => {
   }, [lapse]);
 
   return (
-    <Container>
-      <h3>{task.title}</h3>
-      <strong>{time}</strong>
-      <div>
-        <StartStopButton
-          onClick={handleRunClick}
-          variant="transparent"
-          color={colors.darkerGrey}
-        >
-          {isRunning ? <FiPauseCircle size={18} /> : <FiPlayCircle size={18} />}
-        </StartStopButton>
-        <StartStopButton variant="transparent" color={colors.grey}>
-          <FiEdit3 size={18} />
-        </StartStopButton>
-        <StartStopButton variant="transparent" color={colors.done}>
-          <FiCheckCircle size={18} />
-        </StartStopButton>
-      </div>
-    </Container>
+    <>
+      <Container>
+        <h3>{task.title}</h3>
+        <strong>{time}</strong>
+        <div>
+          <StartStopButton
+            onClick={handleRunClick}
+            variant="transparent"
+            color={colors.darkerGrey}
+          >
+            {isRunning ? (
+              <FiPauseCircle size={18} />
+            ) : (
+              <FiPlayCircle size={18} />
+            )}
+          </StartStopButton>
+          <StartStopButton
+            onClick={setEditingTask}
+            variant="transparent"
+            color={colors.grey}
+          >
+            <FiEdit3 size={18} />
+          </StartStopButton>
+          <StartStopButton variant="transparent" color={colors.done}>
+            <FiCheckCircle size={18} />
+          </StartStopButton>
+        </div>
+      </Container>
+    </>
   );
 };
 
