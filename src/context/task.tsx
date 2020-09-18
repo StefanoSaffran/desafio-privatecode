@@ -11,7 +11,7 @@ export interface ITask {
   id: string;
   title: string;
   done: boolean;
-  startedAt: Date | null;
+  backgroundStartedAt: number | null;
   time: number;
   isRunning: boolean;
 }
@@ -19,7 +19,7 @@ export interface ITask {
 interface ITaskContext {
   tasks: ITask[];
   addTask(task: ITask): void;
-  editTask(task: ITask): void;
+  updateTask(task: ITask): void;
   getTotal(): number;
   getDone(): number;
   getInProgress(): number;
@@ -47,7 +47,7 @@ const TaskProvider: React.FC = ({ children }) => {
     setTasks(state => [...state, task]);
   }, []);
 
-  const editTask = useCallback((task: ITask) => {
+  const updateTask = useCallback((task: ITask) => {
     setTasks(state =>
       state.map(storagedTask => {
         if (storagedTask.id === task.id) return task;
@@ -73,8 +73,8 @@ const TaskProvider: React.FC = ({ children }) => {
   }, [tasks]);
 
   const value = useMemo(
-    () => ({ tasks, addTask, editTask, getTotal, getDone, getInProgress }),
-    [tasks, addTask, editTask, getTotal, getDone, getInProgress],
+    () => ({ tasks, addTask, updateTask, getTotal, getDone, getInProgress }),
+    [tasks, addTask, updateTask, getTotal, getDone, getInProgress],
   );
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

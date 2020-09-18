@@ -13,7 +13,7 @@ interface IModalProps {
 }
 
 const ModalEditTask = ({ isOpen, setIsOpen, task }: IModalProps) => {
-  const { editTask } = useTask();
+  const { updateTask } = useTask();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = useCallback(
@@ -22,20 +22,20 @@ const ModalEditTask = ({ isOpen, setIsOpen, task }: IModalProps) => {
 
       if (inputRef?.current?.value === '') return;
 
-      const { id, isRunning, startedAt, done, time } = task;
+      const { id, isRunning, backgroundStartedAt, done, time } = task;
 
-      editTask({
+      updateTask({
         id,
         title: inputRef?.current?.value || '',
         done,
-        startedAt,
+        backgroundStartedAt,
         isRunning,
         time,
       });
 
       setIsOpen();
     },
-    [setIsOpen, editTask, task],
+    [setIsOpen, updateTask, task],
   );
 
   return (

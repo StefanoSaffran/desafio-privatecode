@@ -28,7 +28,7 @@ const ModalTask = ({ isOpen, setIsOpen }: IModalProps) => {
         id,
         title,
         done: false,
-        startedAt: null,
+        backgroundStartedAt: null,
         isRunning: false,
         time: 0,
       });
