@@ -13,6 +13,7 @@ import {
   FiEdit3,
   FiCheckCircle,
 } from 'react-icons/fi';
+import { IoMdOpen } from 'react-icons/io';
 import { useTheme } from 'styled-components';
 
 import { useTask } from '~/context/task';
@@ -94,6 +95,13 @@ const Task = ({ task, handleEditTask }: PropsWithChildren<IProps>) => {
     });
   }, [updateTask, task, lapse]);
 
+  const handleReopenTask = useCallback(() => {
+    updateTask({
+      ...task,
+      done: false,
+    });
+  }, [updateTask, task]);
+
   const setEditingTask = useCallback(() => {
     handleEditTask(task);
   }, [handleEditTask, task]);
@@ -117,7 +125,7 @@ const Task = ({ task, handleEditTask }: PropsWithChildren<IProps>) => {
         <h3>{task.title}</h3>
         <strong>{time}</strong>
         <div>
-          {!task.done && (
+          {!task.done ? (
             <>
               <StartStopButton
                 onClick={handleRunClick}
@@ -146,6 +154,14 @@ const Task = ({ task, handleEditTask }: PropsWithChildren<IProps>) => {
                 <FiCheckCircle size={18} />
               </FinishButton>
             </>
+          ) : (
+            <FinishButton
+              onClick={handleReopenTask}
+              variant="transparent"
+              color={colors.done}
+            >
+              <IoMdOpen size={18} />
+            </FinishButton>
           )}
         </div>
       </Container>

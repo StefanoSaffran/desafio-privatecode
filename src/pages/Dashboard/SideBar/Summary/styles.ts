@@ -21,5 +21,9 @@ export const Container = styled.div`
         color: ${theme.colors.darkerGrey};
       }
     }
+
+    > div + h4 {
+      margin-top: 2.4rem;
+    }
   `}
 `;
