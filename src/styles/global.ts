@@ -15,6 +15,10 @@ export default createGlobalStyle`
     @media (min-width: 1981px) {
       font-size: 80%;
     };
+
+    @media (max-width: 500px) {
+      font-size: 55%;
+    };
   }
 
   body {
