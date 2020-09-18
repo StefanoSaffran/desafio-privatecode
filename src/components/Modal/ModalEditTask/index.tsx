@@ -1,4 +1,4 @@
-import React, { useCallback, useState, FormEvent, useRef } from 'react';
+import React, { useCallback, FormEvent, useRef } from 'react';
 
 import { Form, ConfirmButton } from './styles';
 

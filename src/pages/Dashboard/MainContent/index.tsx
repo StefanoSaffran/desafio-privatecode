@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 
 import { HiSwitchHorizontal } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
