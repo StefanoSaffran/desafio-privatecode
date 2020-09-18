@@ -7,6 +7,8 @@ import React, {
   useMemo,
 } from 'react';
 
+import { padLeft } from '~/utils';
+
 export interface ITask {
   id: string;
   title: string;
@@ -23,6 +25,7 @@ interface ITaskContext {
   getTotal(): number;
   getDone(): number;
   getInProgress(): number;
+  getTotalTime(): string;
 }
 
 const TaskContext = createContext<ITaskContext | null>(null);
@@ -72,9 +75,36 @@ const TaskProvider: React.FC = ({ children }) => {
     return inProgressTasks;
   }, [tasks]);
 
+  const getTotalTime = useCallback(() => {
+    const timestamp = tasks.reduce((acc, next) => (acc += next.time), 0);
+
+    const seconds = timestamp / 1000;
+
+    const min = Math.floor(seconds / 60).toString();
+    const sec = Math.floor(seconds % 60).toString();
+
+    return `${padLeft(Number(min))}:${padLeft(Number(sec))}`;
+  }, [tasks]);
+
   const value = useMemo(
-    () => ({ tasks, addTask, updateTask, getTotal, getDone, getInProgress }),
-    [tasks, addTask, updateTask, getTotal, getDone, getInProgress],
+    () => ({
+      tasks,
+      addTask,
+      updateTask,
+      getTotal,
+      getDone,
+      getInProgress,
+      getTotalTime,
+    }),
+    [
+      tasks,
+      addTask,
+      updateTask,
+      getTotal,
+      getDone,
+      getInProgress,
+      getTotalTime,
+    ],
   );
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };
