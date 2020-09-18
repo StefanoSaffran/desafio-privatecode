@@ -19,7 +19,7 @@ import { useTask } from '~/context/task';
 import { padLeft } from '~/utils';
 import { ITask } from '~/context/task';
 
-import { Container, StartStopButton } from './styles';
+import { Container, StartStopButton, EditButton, FinishButton } from './styles';
 
 interface IProps {
   task: ITask;
@@ -33,7 +33,6 @@ const Task = ({ task, handleEditTask }: PropsWithChildren<IProps>) => {
   const intervalRef = useRef(0);
 
   const updateTaskBeforeClose = useCallback(() => {
-    console.log('refresh', lapse, Date.now());
     updateTask({
       ...task,
       time: lapse,
@@ -132,20 +131,20 @@ const Task = ({ task, handleEditTask }: PropsWithChildren<IProps>) => {
                 )}
               </StartStopButton>
 
-              <StartStopButton
+              <EditButton
                 onClick={setEditingTask}
                 variant="transparent"
                 color={colors.grey}
               >
                 <FiEdit3 size={18} />
-              </StartStopButton>
-              <StartStopButton
+              </EditButton>
+              <FinishButton
                 onClick={handleFinishTask}
                 variant="transparent"
                 color={colors.done}
               >
                 <FiCheckCircle size={18} />
-              </StartStopButton>
+              </FinishButton>
             </>
           )}
         </div>
