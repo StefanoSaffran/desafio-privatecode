@@ -47,3 +47,7 @@ export const StartStopButton = styled(Button)`
     margin-left: 0.5rem;
   }
 `;
+
+export const EditButton = styled(StartStopButton)``;
+
+export const FinishButton = styled(StartStopButton)``;
